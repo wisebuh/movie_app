@@ -1,0 +1,120 @@
+<svg width="600" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient for film strip -->
+    <linearGradient id="filmGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B4513;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5D3A1A;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Gradient for text with white -->
+    <radialGradient id="textGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F5F5F5;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- White glow gradient -->
+    <radialGradient id="whiteGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#F5F5DC;stop-opacity:0.2" />
+    </radialGradient>
+    
+    <!-- Shadow filter -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.5"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Grain texture -->
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" />
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="discrete" tableValues="0 0 0 1"/>
+      </feComponentTransfer>
+      <feBlend mode="overlay" in="SourceGraphic"/>
+    </filter>
+  </defs>
+  
+  <!-- Background film strip decoration -->
+  <g opacity="0.2">
+    <!-- Film strip holes -->
+    <rect x="10" y="30" width="15" height="15" rx="2" fill="#FFFFFF"/>
+    <rect x="10" y="60" width="15" height="15" rx="2" fill="#FFFFFF"/>
+    <rect x="10" y="90" width="15" height="15" rx="2" fill="#FFFFFF"/>
+    <rect x="10" y="120" width="15" height="15" rx="2" fill="#FFFFFF"/>
+    <rect x="10" y="150" width="15" height="15" rx="2" fill="#FFFFFF"/>
+    
+    <rect x="575" y="30" width="15" height="15" rx="2" fill="#FFFFFF"/>
+    <rect x="575" y="60" width="15" height="15" rx="2" fill="#FFFFFF"/>
+    <rect x="575" y="90" width="15" height="15" rx="2" fill="#FFFFFF"/>
+    <rect x="575" y="120" width="15" height="15" rx="2" fill="#FFFFFF"/>
+    <rect x="575" y="150" width="15" height="15" rx="2" fill="#FFFFFF"/>
+  </g>
+  
+  <!-- Film reel icon -->
+  <g transform="translate(80, 100)" filter="url(#shadow)">
+    <circle cx="0" cy="0" r="35" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+    <!-- White inner glow -->
+    <circle cx="0" cy="0" r="30" fill="url(#whiteGlow)" opacity="0.3"/>
+    <circle cx="0" cy="0" r="12" fill="#FFFFFF"/>
+    <!-- White highlight on center -->
+    <circle cx="-3" cy="-3" r="5" fill="#F5F5F5" opacity="0.6"/>
+    <circle cx="20" cy="0" r="6" fill="#FFFFFF"/>
+    <circle cx="0" cy="20" r="6" fill="#FFFFFF"/>
+    <circle cx="-20" cy="0" r="6" fill="#FFFFFF"/>
+    <circle cx="0" cy="-20" r="6" fill="#FFFFFF"/>
+    <!-- White highlights on spokes -->
+    <circle cx="20" cy="0" r="2" fill="#F0F0F0" opacity="0.7"/>
+    <circle cx="0" cy="20" r="2" fill="#F0F0F0" opacity="0.7"/>
+    <circle cx="-20" cy="0" r="2" fill="#F0F0F0" opacity="0.7"/>
+    <circle cx="0" cy="-20" r="2" fill="#F0F0F0" opacity="0.7"/>
+    <line x1="-8" y1="-8" x2="-17" y2="-17" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="8" y1="-8" x2="17" y2="-17" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="-8" y1="8" x2="-17" y2="17" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="8" y1="8" x2="17" y2="17" stroke="#FFFFFF" stroke-width="2"/>
+  </g>
+  
+  <!-- Main text -->
+  <!-- White outline for contrast -->
+  <text x="150" y="120" font-family="'Bebas Neue', 'Impact', sans-serif" font-size="72" font-weight="700" fill="none" stroke="#F5F5F5" stroke-width="2" letter-spacing="4" opacity="0.3">
+    SHAM
+    <tspan font-style="italic" font-weight="400">movies</tspan>
+  </text>
+  <!-- Main colored text -->
+  <text x="150" y="120" font-family="'Bebas Neue', 'Impact', sans-serif" font-size="72" font-weight="700" fill="#FFFFFF" filter="url(#shadow)" letter-spacing="4">
+    SHAM
+    <tspan fill="#FFFFFF" font-style="italic" font-weight="400">movies</tspan>
+  </text>
+  
+  <!-- Decorative underline -->
+  <path d="M 150 135 Q 300 130, 520 135" stroke="#FFFFFF" stroke-width="3" fill="none" opacity="0.6"/>
+  
+  <!-- Subtitle/tagline area -->
+  <text x="152" y="155" font-family="'Georgia', serif" font-size="16" fill="#FFFFFF" letter-spacing="3" opacity="0.8">
+    C I N E M A T I C   E X P E R I E N C E
+  </text>
+  
+  <!-- Vintage star accents -->
+  <g opacity="0.7">
+    <polygon points="530,45 532,51 538,51 533,55 535,61 530,57 525,61 527,55 522,51 528,51" fill="#FFFFFF"/>
+    <polygon points="545,60 547,66 553,66 548,70 550,76 545,72 540,76 542,70 537,66 543,66" fill="#FFFFFF"/>
+  </g>
+  
+  <!-- Additional white sparkle accents -->
+  <g opacity="0.8">
+    <circle cx="140" cy="95" r="2" fill="#FFFFFF"/>
+    <circle cx="145" cy="88" r="1.5" fill="#FFFFFF"/>
+    <circle cx="520" cy="140" r="2" fill="#FFFFFF"/>
+    <circle cx="525" cy="145" r="1.5" fill="#FFFFFF"/>
+  </g>
+  
+  <!-- Apply subtle grain texture to entire logo -->
+  <rect width="600" height="200" fill="transparent" filter="url(#grain)" opacity="0.03"/>
+</svg>

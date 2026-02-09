@@ -4,7 +4,7 @@ import React from 'react'
 export default function MovieDetails() {
   return (
     <View>
-      <Text> MovieDetails</Text>
+      <Text> {`MovieDetails:`}</Text>
     </View>
   )
 }

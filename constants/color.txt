@@ -1,0 +1,23 @@
+🌑 Dark
+
+HEX: #4C2300
+
+RGB: rgb(76, 35, 0)
+
+🟤 Base
+
+HEX: #6D3301
+
+RGB: rgb(109, 51, 1)
+
+🌅 Light
+
+HEX: #823D01
+
+RGB: rgb(130, 61, 1)
+
+☀️ Lightest
+
+HEX: #A34C01
+
+RGB: rgb(163, 76, 1)

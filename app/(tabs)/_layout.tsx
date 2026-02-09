@@ -1,6 +1,29 @@
 import { Tabs } from "expo-router"
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient'
+import { MaterialIcons } from "@expo/vector-icons";
+import { ImageBackground } from "react-native";
+import {images} from "@/constants/images"
+import { Text, View } from "react-native";
+import cn from "clsx"
+import colors from "@/hooks/usetheme";
+
+
+
+const TabIcon = ({focused, icon,title }:any)=>(
+    focused?(
+     <ImageBackground 
+            source={images.highlight}
+            className="flex flex-row w-full flex-1 min-w-[112px]  min-h-16 mt-4
+                 justify-center items-center rounded-full overflow-hidden">
+                <Ionicons name={icon} size={15} color={focused}  />
+                <Text className="text-secondary text-base font-bold ml-2">{title}</Text>
+    </ImageBackground >):
+    (
+        <View className="size-full justify-center items-center mt-4 rounded-full">
+            <Ionicons name={icon} size={20} color={colors.text}  />
+        </View>
+    )
+)
 
 
 export default function TabLayout() {
@@ -8,14 +31,30 @@ export default function TabLayout() {
     <Tabs
     screenOptions={{
         headerShown:false,
-        tabBarStyle:{
-            backgroundColor:"#000"
+        tabBarShowLabel:false,
+        tabBarItemStyle:{
+            width: '100%',
+            height:"100%",
+            justifyContent:"center",
+            alignItems:"center"
         },
-        tabBarInactiveTintColor:"#333",
-        tabBarActiveTintColor:"#fff",
+        tabBarStyle:{
+            backgroundColor:colors.bg,
+            margin:10,
+            borderRadius:50,
+            marginHorizontal:20,
+            marginBottom:36,
+            height: 52,
+            position:"absolute",
+            overflow:"hidden",
+            borderWidth:1,
+            borderColor:colors.bg
+        },
+        tabBarInactiveTintColor:colors.tintColor,
+        tabBarActiveTintColor:colors.primary,
         tabBarLabelStyle:{
-            fontSize: 15,
-            color:"#fff"
+            fontSize: 10,
+            color:"#000"
         }
         }}>
         <Tabs.Screen
@@ -23,8 +62,8 @@ export default function TabLayout() {
         options={{
             
             title:"Home",
-            tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" size={size} color={color} />)
+            tabBarIcon: ({ focused }) => (
+            <TabIcon focused={focused} icon="home" title="Home"/>)
 
         }}
         />
@@ -33,23 +72,17 @@ export default function TabLayout() {
         name="search"
         options={{
             title:"Search",
-            tabBarIcon:({color, size})=>(
-            <LinearGradient
-                colors={['#ff7a18', '#ffb347']}
-                className="p-2 rounded-full"
-                >
-                <Ionicons name="search" size={size} color={color} />
-            </LinearGradient>
-
-            )
+           tabBarIcon: ({ focused }) => (
+           <TabIcon focused={focused} icon="search" title="Search"/>
+           ) 
         }}
         />
         <Tabs.Screen
         name="profile"
         options={{
             title:"Profile",
-            tabBarIcon:({color, size})=>(
-                 <Ionicons name="person" size={size} color={color}/>
+            tabBarIcon:({focused})=>(
+                 <TabIcon focused={focused} icon="person" title="Profile"/>
             )
         }}/>
 
@@ -57,8 +90,9 @@ export default function TabLayout() {
         name="saved"
         options={{
             title:"Saved",
-            tabBarIcon:({color, size})=>(
-                 <Ionicons name="save" size={size} color={color}/>
+            tabBarIcon:({focused})=>(
+                 <TabIcon focused={focused} icon="bookmark" title="Saved" />
+                 
             )
         }}
         />
