@@ -1,13 +1,27 @@
 import { Text, View, Image, ScrollView } from "react-native";
 import {images} from "@/constants/images"
+import SearchBar from "@/components/SearchBar";
+import { useRouter } from "expo-router";
+import useFetch from "@/services/useFetch";
+import { fetchMovie } from "@/services/api";
  
 export default function App() {
+  const router = useRouter();
+
+  const {data: movies} = useFetch(()=>fetchMovie({query:""}))
   return (
     <View className="flex-1 bg-primary">
       <Image source={images.bg}  className="absolute w-full z-0"/>
-      <ScrollView  className="flex-1 px-5">
+      <ScrollView  className="flex-1 px-5"
+      showsHorizontalScrollIndicator={false} contentContainerStyle={{minHeight:"100%", paddingBottom:10}}>
         <Image source={images.logo} className="w-full h-14 mt-20 mb-5 mx-auto"/>
-        <Text>Hello</Text>
+        <View className="flex-1 mt-5">
+          <SearchBar 
+          onPress={()=>router.push("/search")}
+          placeholder="Search for a movie"
+          />
+        </View>
+        
       </ScrollView>
     </View>
   );

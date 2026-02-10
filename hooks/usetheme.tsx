@@ -1,10 +1,10 @@
 import {colorScheme} from "@/interface/colors";
 
 const  colors  : colorScheme =   {
-    bg:"#0f0d23",
+    bg:"#4C2300",
     primary:"#60a5fa",
     text:"#f1f5f9",
-    textMuted:"#7b7e81",
+    textMuted:"#a8b5db",
     warning: "#3Df201",
     danger: "#ff021d",
     success: "#151312",
