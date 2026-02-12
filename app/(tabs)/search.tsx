@@ -1,11 +1,11 @@
 import { View, Image,Text, FlatList, ActivityIndicator } from 'react-native';
+import { updateSearchCount } from '@/services/appwrite';
 import MovieCard from '@/components/movieCard';
 import { fetchMovies } from '@/services/api';
 import useFetch from '@/services/useFetch';
 import { images } from '@/constants/images';
 import SearchBar from '@/components/SearchBar';
 import { useState, useEffect } from 'react';
-import refsh from "@/components/SearchBar"
 
 export default function Search() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -22,9 +22,13 @@ export default function Search() {
       }), false);
 
       useEffect(()=>{
+
+       
         const timeoutid = setTimeout( async ()=>{
         if (searchQuery.trim()){
           await loadMovies();
+          if (movies?.length > 0 && movies?.[0])
+            await updateSearchCount(searchQuery, movies[0])
         }else{
           reset()
         }

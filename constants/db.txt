@@ -1,0 +1,14 @@
+// List documents
+databases.listDocuments(databaseId, collectionId, queries?)
+
+// Get single document
+databases.getDocument(databaseId, collectionId, documentId)
+
+// Create document
+databases.createDocument(databaseId, collectionId, documentId, data)
+
+// Update document
+databases.updateDocument(databaseId, collectionId, documentId, data)
+
+// Delete document
+databases.deleteDocument(databaseId, collectionId, documentId)
