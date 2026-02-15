@@ -13,40 +13,47 @@ const client = new Client()
 
 const database = new Databases(client);
 
-export const updateSearchCount = async(query:string, movie:Movie)=>{
-    try{
-    const result = await database.listDocuments(DATABASE_ID, COLLECTION_ID,[Query.equal('searchTerm', query)])
-    
-    console.log(result)
-    // Check if a record of that search has already been stored
-    if(result.documents.length > 0){
-        const existingMovie = result.documents[0];
-
-        await database.updateDocument(
-            DATABASE_ID,
+export const updateSearchCount = async(query: string, movie: Movie) => {
+    try {
+        const result = await database.listDocuments(
+            DATABASE_ID, 
             COLLECTION_ID,
-            existingMovie.$id,
-            {
-                count: existingMovie.count + 1
-            }
+            [Query.equal('searchTerm', query)]
         );
-    }else{
-        await database.createDocument(DATABASE_ID,COLLECTION_ID, ID.unique(), {
-            title:query,
-            searchTerm: query,
-            movie_id: movie.id,
-            count: 1,
-            poster_url :`https://image.tmdb.org/t/p/w500${movie.id}`
-        })
-    }
-    }catch(error){
-        console.log(error)
-        throw  error;
-    }
-    // If a document is found increment the searchCount field
+        
+        console.log(result);
 
-    //if no document is found increment
-    // create s new document in Appwrite database
+        if (result.documents.length > 0) {
+            const existingMovie = result.documents[0];
+
+            await database.updateDocument(
+                DATABASE_ID,
+                COLLECTION_ID,
+                existingMovie.$id,
+                {
+                    count: existingMovie.count + 1
+                }
+            );
+        } else {
+            await database.createDocument(
+                DATABASE_ID,
+                COLLECTION_ID, 
+                ID.unique(), 
+                {
+                    title: movie.title,
+                    searchTerm: query,
+                    movie_id: movie.id,
+                    count: 1,
+                    poster_url: movie.poster_path 
+                        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                        : "https://placeholder.co/600x400/1a1a1a/fff.png"
+                }
+            );
+        }
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
 }
 
 export const getTrendingMovies = async (): Promise<TrendingMovie[]| undefined> =>{
@@ -61,3 +68,9 @@ export const getTrendingMovies = async (): Promise<TrendingMovie[]| undefined> =
         return undefined
     }
 }
+
+
+
+
+
+

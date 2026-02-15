@@ -15,6 +15,6 @@ export default function RootLayout() {
     <Stack.Screen
     name="movies/[id]"
     />
-  </Stack>;
+  </Stack>
   </>
 )}

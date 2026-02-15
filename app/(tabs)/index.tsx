@@ -72,7 +72,7 @@ export default function App() {
                 </Text>
                 <FlatList
                   data={trendingMovies}
-                                  renderItem={({ item, index }) => (
+                  renderItem={({ item, index }) => (
                   <View className="mr-4 w-32">
                     <TrendingCard movie={item} index={index} />
                   </View>

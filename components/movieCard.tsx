@@ -24,7 +24,7 @@ export default function MovieCard({ id, poster_path, title, vote_average, releas
                     resizeMode="cover"
                 />
                 <Text className="text-sm font-bold text-white mt-2" numberOfLines={1}>{title}</Text>
-                <View className='flex-row item-cnter justify-start gap-x-1'>
+                <View className='flex-row items-center justify-start gap-x-1'>
                     <MaterialIcons name="star" size={12} color="gold" />
                     <Text className='text-white  text-xs font-bold uppercase'>{Math.round(vote_average/2)}</Text>
                 </View>

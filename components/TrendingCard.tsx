@@ -37,17 +37,11 @@ export default function TrendingCard({ movie: { movie_id, title, poster_url }, i
               </View>
             }
           >
-            <LinearGradient
-              colors={['#FFD700', '#FF6B00']}
-              style={{ width: 50, height: 50 }}
-            />
+            
           </MaskedView>
         </View>
 
-        {/* Optional: Trending Badge */}
-        <View className="absolute top-2 right-2 bg-red-600 px-2 py-1 rounded-full">
-          <Text className="text-white text-xs font-bold">🔥 HOT</Text>
-        </View>
+        
       </TouchableOpacity>
     </Link>
   );

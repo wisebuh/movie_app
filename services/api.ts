@@ -9,7 +9,7 @@ export const TMDB_CONFIG = {
 
 export const fetchMovies = async ({ query }: { query: string }) => {
     const endpoint = query
-        ? `${TMDB_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(query)}` // ✅ Fixed 'movie' to 'query'
+        ? `${TMDB_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
         : `${TMDB_CONFIG.BASE_URL}/discover/movie?sort_by=popularity.desc`;
 
     const response = await fetch(endpoint, {
@@ -18,10 +18,39 @@ export const fetchMovies = async ({ query }: { query: string }) => {
     });
 
     if (!response.ok) {
-        throw new Error(`Failed to fetch movies: ${response.statusText}`); // ✅ Fixed Error constructor
+        throw new Error(`Failed to fetch movies: ${response.statusText}`);
     }
 
     const data = await response.json();
 
-    return data.results; // ✅ Fixed - return results array directly
+    return data.results;
 }
+
+// ✅ Fixed: Arrow function syntax for return type
+export const fetchMovieDetails = async (movieId: string): Promise<MovieDetails> => {
+    try {
+        // Don't add api_key in URL when using Bearer token in headers
+        const response = await fetch(
+            `${TMDB_CONFIG.BASE_URL}/movie/${movieId}`,
+            {
+                method: 'GET',
+                headers: TMDB_CONFIG.headers
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch movie details');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('fetchMovieDetails error:', error);
+        throw error;
+    }
+}
+
+
+
+
+
