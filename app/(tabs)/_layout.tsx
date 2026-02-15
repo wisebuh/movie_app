@@ -17,7 +17,8 @@ const TabIcon = ({focused, icon,title }:any)=>(
                  justify-center items-center rounded-full overflow-hidden">
                 <Ionicons name={icon} size={15} color={focused}  />
                 <Text className="text-secondary text-base font-bold ml-2">{title}</Text>
-    </ImageBackground >):
+    </ImageBackground >
+    ):
     (
         <View className="size-full justify-center items-center mt-4 rounded-full">
             <Ionicons name={icon} size={20} color={colors.text}  />
